@@ -123,3 +123,23 @@ collapse_yr= collapse %>%
   summarize(first_collapse_year=min(year))
 glimpse(collapse_yr)
 head(collapse_yr)
+
+ggplot(data=collapse_yr)+
+  geom_histogram(aes(x=first_collapse_year), binwidth=5)
+
+collapse_ts= collapse_yr %>%
+  count(first_collapse_year)%>%
+  mutate(cum_first_collapse_yr=cumsum(n))
+
+head(collapse_ts)
+ggplot(data=collapse_ts)+
+  geom_line(aes(x=first_collapse_year, y=cum_first_collapse_yr))
+
+
+
+
+
+
+
+
+
